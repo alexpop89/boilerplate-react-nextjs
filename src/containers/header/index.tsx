@@ -1,5 +1,6 @@
 import {FC} from "react";
 
+// @ts-ignore
 import {NavOption} from "@types/nav-option";
 
 import './style.scss'

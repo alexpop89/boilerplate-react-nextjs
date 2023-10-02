@@ -1,3 +1,5 @@
+'use client'
+
 import {FC, Fragment, ReactNode} from "react";
 
 import './style.scss'
