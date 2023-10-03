@@ -1,10 +1,12 @@
+import Page from "@containers/page";
 import '@styles/globals.scss'
-import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
 import {I18nProviderClient} from "locales/client";
 import {getStaticParams} from "locales/server";
-import Page from "@containers/page";
+import en from 'locales/translations/en';
+
+import type {Metadata} from 'next'
 import {setStaticParamsLocale} from "next-international/server";
+import {Inter} from 'next/font/google'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -22,7 +24,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
 
     return (
         <html lang="en">
-        <I18nProviderClient>
+        <I18nProviderClient fallbackLocale={en}>
             <body className={inter.className}>
                 <Page>
                     {children}

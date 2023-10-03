@@ -1,7 +1,7 @@
-import {Metadata} from "next";
-import {getScopedI18n, getStaticParams} from "locales/server";
-import {I18nProviderClient, useScopedI18n} from "locales/client";
 import Page from "@containers/page";
+import {I18nProviderClient} from "locales/client";
+import {getScopedI18n, getStaticParams} from "locales/server";
+import {Metadata} from "next";
 import {setStaticParamsLocale} from "next-international/server";
 
 export const metadata: Metadata = {

@@ -41,7 +41,10 @@
       ],
       "@types/*": [
         "types/*"
-      ]
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
     },
     "forceConsistentCasingInFileNames": true
   },

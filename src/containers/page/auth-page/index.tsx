@@ -1,11 +1,10 @@
 'use client'
 
+import LocalStorage, {Keys} from "@utils/local-storage";
+import {useRouter} from "next/navigation";
 import {FC, ReactNode, useEffect, useState} from "react";
 
-import LocalStorage, {Keys} from "@utils/local-storage";
-
 import './style.scss'
-import {useRouter} from "next/navigation";
 
 
 type AuthPageProps = {

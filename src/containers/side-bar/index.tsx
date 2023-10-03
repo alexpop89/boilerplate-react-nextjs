@@ -1,7 +1,6 @@
-import React from 'react';
-
 // @ts-ignore
 import {NavOption} from "@types/nav-option";
+import React from 'react';
 
 import './style.scss'
 

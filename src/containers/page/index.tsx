@@ -1,9 +1,8 @@
 'use client'
 
-import {FC, Fragment, ReactNode} from "react";
-
 import AuthPage from "@containers/page/auth-page";
 import PublicPage from "@containers/page/public-page";
+import {FC, Fragment, ReactNode} from "react";
 
 import './style.scss'
 

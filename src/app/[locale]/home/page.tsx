@@ -1,5 +1,4 @@
-import {FC, ReactNode} from "react";
-import Page from "@containers/page";
+import {FC} from "react";
 
 import './style.scss'
 

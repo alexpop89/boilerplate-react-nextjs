@@ -1,5 +1,13 @@
-import { FC, ReactNode } from "react";
+'use client'
+
+import Checkbox from "@components/checkbox";
+import Input from "@components/input";
+import Form from "@containers/form";
 import Page from "@containers/page";
+import {emailInputValidation, passwordInputValidation} from "@utils/validation";
+import {useScopedI18n} from "locales/client";
+import {FC, useCallback} from "react";
+import {FieldValues} from "react-hook-form";
 
 import './style.scss'
 
@@ -8,11 +16,40 @@ type LoginProps = {
 };
 
 const Login: FC<LoginProps> = (props: LoginProps) => {
+    const t = useScopedI18n('login')
+    const tCommon = useScopedI18n('common')
+    const tInput = useScopedI18n('input')
+
+    const onSubmit = useCallback((values: FieldValues) => {
+        console.debug(values)
+    }, [])
+
     return (
-        <Page name={'Login'} title={'this is my title'}>
+        <Page name={'login'} title={t('title')}>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porttitor erat eleifend nunc eleifend pharetra. Phasellus aliquam ante quis diam malesuada mollis. Fusce rhoncus mollis lorem quis molestie. Curabitur laoreet, lectus sed placerat porttitor, libero justo molestie mi, sed condimentum nulla enim at metus. Sed nec elementum odio, in tincidunt leo. Nam accumsan mauris dignissim metus convallis convallis. Etiam eros magna, bibendum ut ex nec, volutpat semper mauris. Nullam turpis orci, egestas ut risus eu, volutpat euismod eros. Curabitur mollis id magna vel efficitur. Fusce sed lectus lorem. Cras in dui nec diam accumsan ullamcorper sit amet id libero.
+                {tCommon('loremIpsum')}
             </p>
+            <Form buttonLabel={'login.form.button'} onSubmit={onSubmit} title={'login.form.title'}>
+                <Input
+                    id={'email'}
+                    label={true}
+                    autoComplete="email"
+                    name="email"
+                    type="email"
+                    validation={emailInputValidation}
+                    placeholder={tInput('placeholder.email')}
+                />
+                <Input
+                    id={'password'}
+                    label={true}
+                    autoComplete="current-password"
+                    name="password"
+                    type="password"
+                    validation={passwordInputValidation}
+                    placeholder={tInput('placeholder.password')}
+                />
+                <Checkbox id={"rememberMe"} name={'rememberMe'} label={true} validation={{required: 'requiredField'}}></Checkbox>
+            </Form>
         </Page>
     )
 };

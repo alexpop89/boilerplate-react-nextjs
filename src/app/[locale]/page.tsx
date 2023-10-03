@@ -1,8 +1,5 @@
 'use client'
 
-import Page from "@containers/page";
-
-import {setStaticParamsLocale} from "next-international/server";
 import {useScopedI18n} from "locales/client";
 import {Fragment} from "react";
 
