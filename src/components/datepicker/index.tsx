@@ -5,21 +5,21 @@ import {useScopedI18n} from "locales/client";
 import React, {InputHTMLAttributes, useId} from 'react';
 import './style.scss';
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-    label: boolean;
+type DatePickerProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
+    label?: boolean;
     name: string;
     validation?: any;
-}
+};
 
-const Input: React.FC<InputProps> = ({label, name, validation, ...props}) => {
-    const t = useScopedI18n('input')
+const DatePicker: React.FC<DatePickerProps> = ({label, name, validation, ...props}) => {
+    const t = useScopedI18n('input');
     const {customRegister, customErrors} = useCustomField(name, validation);
     const id = useId()
 
     return (
-        <div className="input-wrapper">
+        <div className="date-picker-wrapper">
             {label && <Label forId={id}>{t(`label.${name}` as any)}</Label>}
-            <input {...customRegister} {...props} id={id}/>
+            <input {...customRegister} {...props}  type="date" id={id}/>
             {customErrors && <InputError forId={id}>
                 {/*@ts-ignore*/}
                 {t(`errors.${customErrors.message}` as any, {[customErrors.type as string]: validation[customErrors.type]?.value})}
@@ -28,4 +28,4 @@ const Input: React.FC<InputProps> = ({label, name, validation, ...props}) => {
     );
 };
 
-export default Input;
+export default DatePicker;

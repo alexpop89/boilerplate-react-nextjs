@@ -6,6 +6,7 @@ import {Fragment} from "react";
 export default function Index() {
     const t = useScopedI18n('common')
     const contactT = useScopedI18n('contact')
+
     return (
         <Fragment>
             <section id="hero">

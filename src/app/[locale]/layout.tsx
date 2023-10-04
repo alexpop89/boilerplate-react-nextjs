@@ -7,6 +7,8 @@ import en from 'locales/translations/en';
 import type {Metadata} from 'next'
 import {setStaticParamsLocale} from "next-international/server";
 import {Inter} from 'next/font/google'
+import Script from "next/script";
+import React, {Fragment} from "react";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export function generateStaticParams() {
-  return getStaticParams();
+    return getStaticParams();
 }
 
 export default function RootLayout({children}: { children: React.ReactNode }) {
@@ -25,10 +27,19 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en">
         <I18nProviderClient fallbackLocale={en}>
+            {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS &&
+                <Fragment>
+                    <Script async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}/>
+                    <Script id={'google-analytics-script'} dangerouslySetInnerHTML={{
+                        __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {page_path: window.location.pathname,});`
+                    }}/>
+                </Fragment>
+            }
             <body className={inter.className}>
-                <Page>
-                    {children}
-                </Page>
+            <Page>
+                {children}
+            </Page>
             </body>
         </I18nProviderClient>
         </html>

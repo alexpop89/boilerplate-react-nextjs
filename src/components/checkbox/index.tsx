@@ -1,6 +1,8 @@
+import InputError from "@components/input-error";
+import Label from "@components/label";
 import useCustomField from "@hooks/use-custom-field";
 import {useScopedI18n} from "locales/client";
-import React, {InputHTMLAttributes} from 'react';
+import React, {InputHTMLAttributes, useId} from 'react';
 import './style.scss';
 
 type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
@@ -12,12 +14,13 @@ type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
 const Checkbox: React.FC<CheckboxProps> = ({ label, name, validation, ...props }) => {
     const t = useScopedI18n('input');
     const { customRegister, customErrors } = useCustomField(name, validation);
+    const id = useId()
 
     return (
         <div className="checkbox-wrapper">
-            <input type="checkbox" {...customRegister} {...props} />
-            {label && <label htmlFor={props.id}>{t(`label.${name}` as any)}</label>}
-            {customErrors && <span className="error">{t(`errors.${customErrors.message}` as any)}</span>}
+            <input {...customRegister} {...props} type="checkbox" id={id}/>
+            {label && <Label forId={id}>{t(`label.${name}` as any)}</Label>}
+            {customErrors && <InputError forId={id}>{t(`errors.${customErrors.message}` as any)}</InputError>}
         </div>
     );
 };

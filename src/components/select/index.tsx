@@ -1,7 +1,9 @@
-// Define a type for the options
+import InputError from "@components/input-error";
+import Label from "@components/label";
+import {SelectOption} from "@data-types/select-option";
 import useCustomField from "@hooks/use-custom-field";
-import {SelectOption} from "@types/select-option";
 import {useI18n, useScopedI18n} from "locales/client";
+import React, {useId} from "react";
 
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
     label: boolean;
@@ -14,23 +16,24 @@ const Select: React.FC<SelectProps> = ({label, name, options, validation, ...pro
     const t = useScopedI18n('input');
     const tAll = useI18n()
     const {customRegister, customErrors} = useCustomField(name, validation);
+    const id = useId()
 
     return (
         <div className="select-wrapper">
-            {label && <label htmlFor={props.id}>{t(`label.${name}` as any)}</label>}
+            {label && <Label forId={id}>{t(`label.${name}` as any)}</Label>}
 
-            <select {...customRegister} {...props}>
-                {options.map((option, index) => (
-                    <option key={index} value={option.key}>
+            <select {...customRegister} {...props} id={id}>
+                {options.map((option) => (
+                    <option key={option.key} value={option.key}>
                         {tAll(option.label as any, {})}
                     </option>
                 ))}
             </select>
 
-            {customErrors && <span className="error">
+            {customErrors && <InputError forId={id}>
                 {/*@ts-ignore*/}
                 {t(`errors.${customErrors.message}` as any, {[customErrors.type as string]: validation[customErrors.type]?.value})}
-            </span>}
+            </InputError>}
         </div>
     );
 };

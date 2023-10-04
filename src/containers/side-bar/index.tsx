@@ -1,5 +1,5 @@
 // @ts-ignore
-import {NavOption} from "@types/nav-option";
+import {NavOption} from "@data-types/nav-option";
 import React from 'react';
 
 import './style.scss'
