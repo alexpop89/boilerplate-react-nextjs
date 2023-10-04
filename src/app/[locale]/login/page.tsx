@@ -5,9 +5,11 @@ import Input from "@components/input";
 import Form from "@containers/form";
 import Page from "@containers/page";
 import {emailInputValidation, passwordInputValidation} from "@utils/validation";
+import {RootState} from 'app/store';
 import {useScopedI18n} from "locales/client";
 import {FC, useCallback} from "react";
 import {FieldValues} from "react-hook-form";
+import {useAppSelector} from "redux/hooks";
 
 import './style.scss'
 
@@ -15,10 +17,14 @@ type LoginProps = {
 
 };
 
+
 const Login: FC<LoginProps> = (props: LoginProps) => {
     const t = useScopedI18n('login')
     const tCommon = useScopedI18n('common')
     const tInput = useScopedI18n('input')
+    const user = useAppSelector((state: RootState) => state.user);
+
+    console.log(user)
 
     const onSubmit = useCallback((values: FieldValues) => {
         console.debug(values)

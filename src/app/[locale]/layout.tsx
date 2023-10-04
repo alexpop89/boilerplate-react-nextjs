@@ -9,6 +9,7 @@ import {setStaticParamsLocale} from "next-international/server";
 import {Inter} from 'next/font/google'
 import Script from "next/script";
 import React, {Fragment} from "react";
+import {ReduxProvider} from "redux/provider";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -26,6 +27,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
 
     return (
         <html lang="en">
+
         <I18nProviderClient fallbackLocale={en}>
             {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS &&
                 <Fragment>
@@ -37,9 +39,11 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                 </Fragment>
             }
             <body className={inter.className}>
-            <Page>
-                {children}
-            </Page>
+            <ReduxProvider>
+                <Page>
+                    {children}
+                </Page>
+            </ReduxProvider>
             </body>
         </I18nProviderClient>
         </html>

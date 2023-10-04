@@ -36,6 +36,9 @@
       "@utils/*": [
         "utils/*"
       ],
+      "@features/*": [
+        "features/*"
+      ],
       "@styles/*": [
         "styles/*"
       ],
