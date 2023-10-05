@@ -3,6 +3,7 @@ import {I18nProviderClient} from "locales/client";
 import {getScopedI18n, getStaticParams} from "locales/server";
 import {Metadata} from "next";
 import {setStaticParamsLocale} from "next-international/server";
+import React from "react";
 
 export const metadata: Metadata = {
     title: 'Home',

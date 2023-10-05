@@ -55,7 +55,7 @@ const userSlice = createSlice({
         updateInfo(state, action: PayloadAction<{ firstName?: string, lastName?: string; email?: string }>) {
             const {firstName, lastName, email} = action.payload;
             state.firstName = firstName || state.firstName
-            state.lastName = firstName || state.lastName
+            state.lastName = lastName || state.lastName
             state.email = email || state.email
         },
     },

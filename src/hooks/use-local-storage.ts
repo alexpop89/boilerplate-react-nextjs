@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 type UseLocalStorageResponse<T> = [T, React.Dispatch<React.SetStateAction<T>>];
 

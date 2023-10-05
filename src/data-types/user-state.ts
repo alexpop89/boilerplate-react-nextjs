@@ -1,7 +1,6 @@
-export type UserState = {
+import {UserProfile} from "@data-types/user-profile";
+
+export type UserState = UserProfile & {
     id: string | null;
-    firstName: string | null;
-    lastName: string | null;
-    email: string | null;
     isLoggedIn: boolean;
 }

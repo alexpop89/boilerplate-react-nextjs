@@ -4,6 +4,7 @@ import Checkbox from "@components/checkbox";
 import Input from "@components/input";
 import Form from "@containers/form";
 import Page from "@containers/page";
+import {usersApi} from "@services/users";
 import {emailInputValidation, passwordInputValidation} from "@utils/validation";
 import {RootState} from 'app/store';
 import {useScopedI18n} from "locales/client";
@@ -13,9 +14,7 @@ import {useAppSelector} from "redux/hooks";
 
 import './style.scss'
 
-type LoginProps = {
-
-};
+type LoginProps = {};
 
 
 const Login: FC<LoginProps> = (props: LoginProps) => {
@@ -24,11 +23,10 @@ const Login: FC<LoginProps> = (props: LoginProps) => {
     const tInput = useScopedI18n('input')
     const user = useAppSelector((state: RootState) => state.user);
 
-    console.log(user)
-
+    const [login, {isLoading, isError, data}] = usersApi.useLoginMutation();
     const onSubmit = useCallback((values: FieldValues) => {
-        console.debug(values)
-    }, [])
+        login({email: values.email, password: values.password})
+    }, [login])
 
     return (
         <Page name={'login'} title={t('title')}>
@@ -54,7 +52,8 @@ const Login: FC<LoginProps> = (props: LoginProps) => {
                     validation={passwordInputValidation}
                     placeholder={tInput('placeholder.password')}
                 />
-                <Checkbox id={"rememberMe"} name={'rememberMe'} label={true} validation={{required: 'requiredField'}}></Checkbox>
+                <Checkbox id={"rememberMe"} name={'rememberMe'} label={true}
+                          validation={{required: 'requiredField'}}></Checkbox>
             </Form>
         </Page>
     )
