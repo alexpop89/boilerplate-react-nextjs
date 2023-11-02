@@ -2,6 +2,9 @@
   "name": "boilerplate-react-nextjs",
   "version": "0.1.1",
   "private": true,
+  "engines": {
+    "node": "^18.17.0 || >=20.5.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,17 +12,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.7",
-    "@types/react-redux": "^7.1.27",
+    "@reduxjs/toolkit": "1.9.7",
+    "@types/react-redux": "7.1.28",
     "axios": "1.5.1",
     "next": "13.5.4",
     "next-international": "1.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-ga": "^3.3.1",
-    "react-hook-form": "^7.47.0",
-    "react-redux": "^8.1.3",
-    "redux": "^4.2.1",
+    "react-ga": "3.3.1",
+    "react-hook-form": "7.47.0",
+    "react-redux": "8.1.3",
+    "redux": "4.2.1",
     "sass": "1.68.0"
   },
   "devDependencies": {
